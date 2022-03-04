@@ -19,5 +19,5 @@ from RateMyTA import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/', views.showPage)
+    path('', views.showPage)
 ]

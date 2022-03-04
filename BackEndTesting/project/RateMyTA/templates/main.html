@@ -1,12 +1,41 @@
 <html>
     <body>
-        <h1>FUCK</h1>
+    <!-- <body>
+        <h1>PAGE TRANSTITION TEST</h1>
         <input type="text" id="name">Name
         <br>
         <input type="text" id="email">Email
         <br>
         <input type="password" id="password">Password
         <br>
-        <button id="submit">Submit</button>
+        <a href='done'>
+            <input type = "submit">
+        </a>
+        <form action ='/info/' method = "post">
+            <input type="text" id="name" type = "text" name = "your_name" value = "{{ current_name }}">Name
+            <br>
+            <input type="text" id="email" type "text" name = "email" value = "{{ current_email }}">Email
+            <br>
+            <input type="password" id="password" type "text" name = "password" value = "{{ current_password }}">Password
+            <br>
+            <a href='done'>
+                <input type = "submit">
+            </a>    
+        </form>
+    </body>
+</html>
+</html> -->
+
+<form action = "" method = "post">
+    {% csrf_token %}
+    {{form}}
+    <input type = "submit" name = "submit" value = "Submit"/>
+</form>
+
+{% if submitbutton == "Submit" %}
+<h1> Your first name is {{ full_name }}</h1>
+<h1> Your email is {{ email }}</h1>
+<h1> Your password is {{ password }} </h1>
+{% endif %}
     </body>
 </html>
