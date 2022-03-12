@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .forms import LoginForm
+from .models import addUser
+
 
 # Create your views here.
 def showPage(request):
@@ -22,6 +24,7 @@ def showPage(request):
             full_name = form.cleaned_data.get("name")
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
+            addUser(full_name,email,password)
     else:
         form = LoginForm()
     context = {'form': form, 'full_name':full_name,'email':email,'password':password,'submitbutton':submitbutton}
