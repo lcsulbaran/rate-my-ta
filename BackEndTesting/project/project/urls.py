@@ -19,5 +19,8 @@ from RateMyTA import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.showPage)
+    path('', views.showStartPg),
+    path('signup/', views.showSignup, name = 'signup'),
+    path('login/', views.showLogin, name = 'login')
+
 ]
