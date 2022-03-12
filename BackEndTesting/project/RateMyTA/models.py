@@ -27,5 +27,9 @@ def addUser(name, email, password):
         "Password" : password
     }
 
+    exists = collection_name.find_one({"Email": email})
+    if(exists == None):
 # Insert the documents
-    collection_name.insert_one(User)
+        collection_name.insert_one(User)
+    else:
+        print('email is already used')
