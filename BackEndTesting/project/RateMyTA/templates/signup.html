@@ -1,41 +1,92 @@
-<html>
-    <body>
-    <!-- <body>
-        <h1>PAGE TRANSTITION TEST</h1>
-        <input type="text" id="name">Name
-        <br>
-        <input type="text" id="email">Email
-        <br>
-        <input type="password" id="password">Password
-        <br>
-        <a href='done'>
-            <input type = "submit">
-        </a>
-        <form action ='/info/' method = "post">
-            <input type="text" id="name" type = "text" name = "your_name" value = "{{ current_name }}">Name
-            <br>
-            <input type="text" id="email" type "text" name = "email" value = "{{ current_email }}">Email
-            <br>
-            <input type="password" id="password" type "text" name = "password" value = "{{ current_password }}">Password
-            <br>
-            <a href='done'>
-                <input type = "submit">
-            </a>    
-        </form>
-    </body>
-</html>
-</html> -->
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Login/Signup</title>
 
-<form action = "" method = "post">
-    {% csrf_token %}
-    {{form}}
-    <input type = "submit" name = "submit" value = "Submit"/>
-</form>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
+    
 
-{% if submitbutton == "Submit" %}
-<h1> Your first name is {{ full_name }}</h1>
-<h1> Your email is {{ email }}</h1>
-<h1> Your password is {{ password }} </h1>
-{% endif %}
-    </body>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center" data-new-gr-c-s-check-loaded="14.1052.0" data-gr-ext-installed="">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">RateMyTA</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                  <a class="nav-link" href="#">Back to Homepage</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+    </header> 
+
+    <div class = "h-5" style = "background-color: #6d6875;">
+      <svg xmlns="http://www.w3.org/2000/svg" style = "margin-top: 40px" width="60" height="60" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
+        <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
+        <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
+      </svg>
+    </div>
+
+<!-- <div class = "h-125" style = "display: inline-block; width: 100%; background-color: #6d6875;">
+  <form style = "display:inline-block; padding: 100px;">
+    <h1 class="h3 mb-3 fw-bold">Log In</h1>
+
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <label for="floatingPassword">Password</label>
+    </div>
+
+    <button class="w-100 btn btn-lg btn-dark" type="submit">Log In</button>
+  </form> -->
+
+
+
+    <form method = "POST" action = "" style = "display: inline-block; padding: 100px;">
+        {% csrf_token %}
+      <h1 class="h3 mb-3 fw-bold">Sign Up</h1>
+  
+      <div class="form-floating mb-3">
+          {{form.name}}
+        <!-- <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="form-floating mb-3">
+          {{form.email}}
+        <!-- <input type="email" class="form-control" id="floatingPassword" placeholder="Password"> -->
+        <label for="floatingPassword">Email</label>
+      </div>
+      <div class="form-floating mb-3">
+          {{form.password}}
+        <!-- <input type="password" class="form-control" id="floatingPassword" placeholder="Password"> -->
+        <label for="floatingPassword">Password</label>
+      </div>
+      
+      <button name="submit" class="w-100 btn btn-lg btn-dark" type="submit">Sign up</button>
+
+    </form>
+    <p class="mt-5 mb-3 text-white">©RateMyTA 2022</p>
+</div>
+
+
+<footer class="mt-auto bg-dark text-white-50" style="min-height: 65px; margin-top: 50px;"></footer>
+
+</body>
 </html>
