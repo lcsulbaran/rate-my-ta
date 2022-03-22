@@ -41,14 +41,14 @@
       <main class="px-3">
         <h1>Search for TAs</h1>
         <p class="lead"></p>
-        <form method="GET" action="">
+        <form method="POST" action="">
           {% csrf_token %}
           <div class="search-bar-wrapper">
             {{form.searchQuery}}
             <label class="text-black" for="searchBar">TA Name</label>
           </div> 
           <p class="lead"></p>
-          <button type="submit" class="btn btn-primary"><a class="text-white" href='search-results'>Search</a></button> 
+          <button type="submit" class="btn btn-primary">Search</button> 
         </form>   
       </main>
 

@@ -19,9 +19,10 @@ from RateMyTA import views
 
 urlpatterns = [
     path('', views.showSearch, name='search'),
+    path('admin/', admin.site.urls),
     path('login/', views.showLogin, name='login'),
     path('signup/', views.showSignup, name='signup'),
-    # path('search-results/', views.showSearchResults, name='searchResults'),
+    path('search-results/', views.showSearchResults, name='searchResults'),
     path('new-review/', views.showNewReview, name='newReview'),
 
 ]

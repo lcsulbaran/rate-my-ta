@@ -5,9 +5,9 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
 from .forms import SearchForm, SignupForm
-from .forms import LoginForm
+from .forms import LoginForm, NewReviewForm
 from .models import addUser, searchForTA
-from .models import verifyUser
+from .models import verifyUser, createReview
 
 
 
@@ -39,13 +39,13 @@ def showSignup(request):
 
 def showSearch(request):
 
-    searchButton = request.GET.get("submit")
+    searchButton = request.POST.get("submit")
 
     searchString = ''
 
-    if request.method == 'GET':
+    if request.method == 'POST':
 
-        form = SearchForm(request.GET)
+        form = SearchForm(request.POST)
         if form.is_valid():
 
             print("ahhhhhhhh")
@@ -66,9 +66,7 @@ def showLogin(request):
     full_name=''
     email=''
     password=''
-    # connect to db
-    # pass to html page
-    # return render(request, 'main.html')
+    
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -80,5 +78,35 @@ def showLogin(request):
     context = {'form': form,'email':email,'password':password,'submitbutton':submitbutton}
     return render( request, 'login.html', context)
 
+
+
 def showNewReview(request):
-    return render(request, 'newReview.html')
+    submitbutton= request.POST.get("submit")
+
+    body=''
+    courseCode=''
+    rating=''
+    title = ''
+
+    print(request.method)
+
+    if request.method == 'POST':
+        form = NewReviewForm(request.POST)
+
+        if form.is_valid():
+            title = form.cleaned_data.get("title")
+            body = form.cleaned_data.get("body")
+            courseCode = form.cleaned_data.get("courseCode")
+            rating = form.cleaned_data.get("rating")
+            createReview(title, body, courseCode, rating)
+        else:
+            print(form.errors)
+
+    else:
+        form = NewReviewForm()
+  
+    context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton}
+    return render( request, 'newReview.html', context)
+
+def showSearchResults(request):
+    return render( request, 'search-results.html')

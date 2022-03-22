@@ -27,6 +27,7 @@ def addUser(name, email, password):
         print('email is already used')
 
 
+
 def verifyUser(email, password):
 
     ca = certifi.where()
@@ -61,3 +62,34 @@ def searchForTA(searchString):
     else:
         print('there is a ta with that name: ' + taResult['School'])
         print(taResult)
+
+
+
+def createReview(title, body, course_code, rating):
+
+    print("inside createReview")
+
+    
+    ca = certifi.where()
+    connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
+    my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
+
+    dbname = my_client['RateMyTA']
+    collection_name = dbname["Reviews"]
+
+    student_ID = 0
+    ta_ID = 0
+
+    Review = {
+        "Title": title,
+        "Body" : body,
+        "Course Code" : course_code,
+        "Rating" : rating,
+        "Student_ID" : student_ID,
+        "TA_ID": ta_ID
+    }
+
+    if collection_name.insert_one(Review) != None:
+        print("Review added")
+    else:
+        print("Error, review not added")
