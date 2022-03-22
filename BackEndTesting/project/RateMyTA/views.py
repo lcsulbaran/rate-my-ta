@@ -4,9 +4,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
-from .forms import SignupForm
+from .forms import SearchForm, SignupForm
 from .forms import LoginForm
-from .models import addUser
+from .models import addUser, searchForTA
 from .models import verifyUser
 
 
@@ -18,9 +18,7 @@ def showSignup(request):
     full_name=''
     email=''
     password=''
-    # connect to db
-    # pass to html page
-    # return render(request, 'main.html')
+   
     if request.method == 'POST':
         form = SignupForm(request.POST)
         if form.is_valid():
@@ -34,8 +32,33 @@ def showSignup(request):
     return render( request, 'signup.html', context)
 
 
-def showStartPg(request):
-    return render(request, 'startpg.html')
+
+
+# def showStartPg(request):
+#     return render(request, 'startpg.html')
+
+def showSearch(request):
+
+    searchButton = request.GET.get("submit")
+
+    searchString = ''
+
+    if request.method == 'GET':
+
+        form = SearchForm(request.GET)
+        if form.is_valid():
+
+            print("ahhhhhhhh")
+            searchString = form.cleaned_data.get("searchQuery")
+            searchForTA(searchString)
+    else:
+        form = SearchForm()
+
+    context = {'form': form,'searchString': searchString, 'searchButton':searchButton}
+    return render(request, 'search.html', context)
+
+
+
 
 def showLogin(request):
     submitbutton= request.POST.get("submit")
@@ -57,5 +80,5 @@ def showLogin(request):
     context = {'form': form,'email':email,'password':password,'submitbutton':submitbutton}
     return render( request, 'login.html', context)
 
-def showLoginSuccess(request):
-    return render(request, 'loggedin.html')
+def showNewReview(request):
+    return render(request, 'newReview.html')

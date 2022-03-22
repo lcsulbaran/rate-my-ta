@@ -8,18 +8,11 @@ import certifi
 def addUser(name, email, password):
 
     ca = certifi.where()
-
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
-
     my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
     
-# First define the database name
-
-
     dbname = my_client['RateMyTA']
-
     collection_name = dbname["Students"]
-
 
     User = {
         "Name" : name,
@@ -29,22 +22,19 @@ def addUser(name, email, password):
 
     exists = collection_name.find_one({"Email": email})
     if(exists == None):
-# Insert the documents
         collection_name.insert_one(User)
     else:
         print('email is already used')
 
+
 def verifyUser(email, password):
 
     ca = certifi.where()
-
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
-
     my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
 
 
     dbname = my_client['RateMyTA']
-
     collection_name = dbname["Students"]
 
     exists = collection_name.find_one({"Email": email, "Password": password})
@@ -52,3 +42,22 @@ def verifyUser(email, password):
         print('login information is incorrect')
     else:
         print('user logged in')
+
+
+
+def searchForTA(searchString):
+
+    ca = certifi.where()
+    connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
+    my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
+
+
+    dbname = my_client['RateMyTA']
+    collection_name = dbname["TAs"]
+
+    taResult = collection_name.find_one({"Name": searchString})
+    if(taResult == None):
+        print('ta not found, searchString: ' + searchString)
+    else:
+        print('there is a ta with that name: ' + taResult['School'])
+        print(taResult)
