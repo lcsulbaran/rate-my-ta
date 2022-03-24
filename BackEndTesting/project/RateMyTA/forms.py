@@ -6,8 +6,9 @@ class SignupForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword'}))
+    
 class LoginForm(forms.Form):
-    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword'}))
 
 class SearchForm(forms.Form):
