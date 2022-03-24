@@ -8,7 +8,7 @@ from .forms import SearchForm, SignupForm
 from .forms import LoginForm, NewReviewForm
 from .models import addUser, searchForTA
 from .models import verifyUser, createReview
-
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -26,6 +26,7 @@ def showSignup(request):
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             addUser(full_name,email,password)
+            newUser = User.objects.create_user(full_name,email,password)
     else:
         form = SignupForm()
     context = {'form': form, 'full_name':full_name,'email':email,'password':password,'submitbutton':submitbutton}

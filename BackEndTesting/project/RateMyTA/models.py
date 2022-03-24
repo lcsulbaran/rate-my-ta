@@ -3,6 +3,7 @@ from ssl import CERT_NONE, CERT_REQUIRED, SSL_ERROR_SSL, SSL_ERROR_SYSCALL
 from django.conf import settings
 import pymongo
 import certifi
+from django.contrib.auth.models import User
 
 # Create your models here.
 def addUser(name, email, password):
