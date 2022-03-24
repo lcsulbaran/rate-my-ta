@@ -1,6 +1,8 @@
 import email
+from re import search
 from urllib import request
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
@@ -47,10 +49,10 @@ def showSearch(request):
 
         form = SearchForm(request.POST)
         if form.is_valid():
-
-            print("ahhhhhhhh")
             searchString = form.cleaned_data.get("searchQuery")
-            searchForTA(searchString)
+            # searchForTA(searchString)
+            return redirect('searchResults', ss=searchString)
+
     else:
         form = SearchForm()
 
@@ -58,6 +60,10 @@ def showSearch(request):
     return render(request, 'search.html', context)
 
 
+def showSearchResults(request, ss):
+    data = searchForTA(ss)
+    context = {'data': data,"searchString": ss}
+    return render(request,'search-results.html', context)
 
 
 def showLogin(request):
@@ -108,5 +114,3 @@ def showNewReview(request):
     context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton}
     return render( request, 'newReview.html', context)
 
-def showSearchResults(request):
-    return render( request, 'search-results.html')

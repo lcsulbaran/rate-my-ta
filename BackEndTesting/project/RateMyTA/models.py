@@ -60,8 +60,9 @@ def searchForTA(searchString):
     if(taResult == None):
         print('ta not found, searchString: ' + searchString)
     else:
-        print('there is a ta with that name: ' + taResult['School'])
         print(taResult)
+    
+    return taResult
 
 
 
