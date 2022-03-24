@@ -29,16 +29,12 @@ def showSignup(request):
             password = form.cleaned_data.get("password")
             addUser(full_name,email,password)
             newUser = User.objects.create_user(full_name,email,password)
+            return redirect('../login')
     else:
         form = SignupForm()
     context = {'form': form, 'full_name':full_name,'email':email,'password':password,'submitbutton':submitbutton}
     return render( request, 'signup.html', context)
 
-
-
-
-# def showStartPg(request):
-#     return render(request, 'startpg.html')
 
 def showSearch(request):
 
@@ -66,6 +62,7 @@ def showSearchResults(request, ss):
     context = {'data': data,"searchString": ss}
     return render(request,'search-results.html', context)
 
+
 def showLogin(request):
     logout(request)
     submitbutton= request.POST.get("submit")
@@ -83,14 +80,12 @@ def showLogin(request):
             user = authenticate(username = username, password = password)
             if user is not None:
                 login(request, user)
+                return redirect('../')
 
     else:
         form = LoginForm()
     context = {'form': form,'email':email,'password':password,'submitbutton':submitbutton}
     return render( request, 'login.html', context)
-
-# def logoutRequest(request):
-#         return redirect('')
 
 
 def showNewReview(request):

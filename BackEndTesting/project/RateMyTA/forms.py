@@ -3,16 +3,16 @@ from django import forms
 
 class SignupForm(forms.Form): 
     #name = forms.CharField(label = 'Your Name', max_length = 100)
-    name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword'}))
+    name = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
+    email = forms.CharField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
+    password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword'}))
     
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword'}))
+    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
+    password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'id': 'floatingPassword'}))
 
 class SearchForm(forms.Form):
-    searchQuery = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control w-50 mx-auto', 'id': 'searchBar'}))
+    searchQuery = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingInput'}))
 
 class NewReviewForm(forms.Form):
     courseCode = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingTextArea'}))
