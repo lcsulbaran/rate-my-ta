@@ -24,5 +24,4 @@ urlpatterns = [
     path('signup/', views.showSignup, name='signup'),
     path('search-results/<str:ss>/', views.showSearchResults, name='searchResults'),
     path('new-review/', views.showNewReview, name='newReview'),
-
 ]
