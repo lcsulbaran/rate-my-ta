@@ -29,7 +29,7 @@ def addUser(name, email, password):
 
 
 
-def verifyUser(email, password):
+def verifyUser(username, password):
 
     ca = certifi.where()
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
@@ -39,7 +39,7 @@ def verifyUser(email, password):
     dbname = my_client['RateMyTA']
     collection_name = dbname["Students"]
 
-    exists = collection_name.find_one({"Email": email, "Password": password})
+    exists = collection_name.find_one({"Username": username, "Password": password})
     if(exists == None):
         print('login information is incorrect')
     else:
