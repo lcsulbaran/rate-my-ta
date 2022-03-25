@@ -38,7 +38,7 @@
       </header>
       
       <main class="px-3 w-50 mx-auto">
-        <p class="h3 text-white">Review For: Insert TA Name Here</p>   
+        <p class="h3 text-white">Review For: {{TA.Name}}</p>   
         <form method ="POST" action="">
           {% csrf_token %}  
           <div class="form-floating">
@@ -59,10 +59,11 @@
           <div class="form-floating">
               {{form.rating}}
               <label for="floatingSelect">Rating</label>
-            </div>
-          <p class="lead"></p>
+          </div>
+            <input type="hidden" id="taID" name="taID" value="{{id}}">
+          <p class="lead"></p>       
           <div class="button wrapper text-center">      
-              <button name="submit" type="submit" class="btn btn-primary">Submit Review</button>   
+              <button name="submit" type="submit" class="btn btn-primary" value="{{id}}">Submit Review</button>   
           </div>
         </form>  
       </main>

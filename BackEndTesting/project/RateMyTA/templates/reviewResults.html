@@ -25,14 +25,20 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto text-center">
-                  <a class="nav-link" href='../'>Search</a>
-                  <a class="nav-link" href='../login'>Login</a>
-                  <a class="nav-link" href='../signup'>Signup</a>
+                  <a class="nav-link text-white" href='../'>Search</a>
+                  {% if user.is_authenticated %}
+                    <a class="nav-link text-white" href='../login'>Logout</a> 
+                  {% else %}     
+                    <a class="nav-link text-white" href='../login'>Login</a>
+                    <a class="nav-link text-white" href='../signup'>Signup</a>
+                  {% endif %}
                 </div>
               </div>
             </div>
           </nav>
 
+      <form method="POST" action="{% url 'new-review' %}" id="startReviewForm">
+        {% csrf_token %}
         <div class="container text-center" style="margin-top: 70px;">
           <div class="row">
             <div class="col">
@@ -40,14 +46,20 @@
             </div>
             <div class="col-6">
                 <h1 style="font-family: 'Inter', sans-serif; font-size: 50px;" class="fw-bold mb-4">{{TA.Name}}</h1>
-            </div>
+            </div>    
+            {% if user.is_authenticated %}
+              <div class="col">
+                  <button name="startReviewButton" type="submit" form="startReviewForm" class="btn btn-dark btn-lg" style="height: 100px;" value="{{id}}">Write a Review</button>
+              </div> 
+            {% else %}
             <div class="col">
-                <button name="startReviewButton" type="submit" form="startReviewForm" class="btn btn-dark btn-lg" style="height: 100px;" value="{{id}}">Write a Review</button>
-            </div>
+              <button name="loginButton" type="submit" class="btn btn-dark btn-lg" style="height: 100px;"><a class="text-white" href='../login'>Login to Write a Review</a></button>
+            </div> 
+            {% endif %}
           </div>
           <hr class="my-4" style="height: 3px; border: 3px">
         </div>
-    
+      </form>
 
         <div class="container text-center">
             <div class="row">

@@ -103,7 +103,7 @@ def searchForTA(searchString):
 
 
 
-def createReview(title, body, course_code, rating):
+def createReview(title, body, course_code, rating, taId):
 
     print("inside createReview")
 
@@ -115,14 +115,13 @@ def createReview(title, body, course_code, rating):
     dbname = my_client['RateMyTA']
     collection_name = dbname["Reviews"]
 
-    ta_ID = 0
+    ta_ID = taId
 
     Review = {
         "Title": title,
         "Body" : body,
         "Course Code" : course_code,
         "Rating" : rating,
-        "Student_ID" : student_ID,
         "TA_ID": ta_ID
     }
 

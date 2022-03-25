@@ -69,8 +69,6 @@ def showSearchResults(request, ss):
 
 def showReviewResults(request):
     taId = request.POST.get('submitButton', None)
-    print(taId)
-    # use taId to find all reviews for the TA then create a context to pass to render
     reviews = findReviews(taId)
     TA = findTAByID(taId)
     if reviews != None:
@@ -78,14 +76,7 @@ def showReviewResults(request):
     else:
         context = {'reviews': reviews, 'size':len(reviews), 'TA': TA}
     return render(request, 'reviewResults.html', context)    
-
-def showNewReview(request):
-    taId = request.POST.get('startReviewButton', None)
-    print(taId)
-    # use taId to find all reviews for the TA then create a context to pass to render
-    createReview(taId)
-    return render(request, 'newReview.html', context)    
-
+  
 def showLogin(request):
     logout(request)
     submitbutton= request.POST.get("submit")
@@ -113,31 +104,36 @@ def showLogin(request):
 
 def showNewReview(request):
     if request.user.is_authenticated:
+        taId = request.POST.get('startReviewButton', None)
+        TA = findTAByID(taId)
         submitbutton= request.POST.get("submit")
-
+        
+        taIdentifier = taId
         body=''
         courseCode=''
         rating=''
         title = ''
 
         if request.method == 'POST':
-            form = NewReviewForm(request.POST)
+            form = NewReviewForm(request.POST)          
 
             if form.is_valid():
                 title = form.cleaned_data.get("title")
                 body = form.cleaned_data.get("body")
                 courseCode = form.cleaned_data.get("courseCode")
                 rating = form.cleaned_data.get("rating")
-                createReview(title, body, courseCode, rating)
+                taIdentifier = form.cleaned_data.get("taID")
+                createReview(title, body, courseCode, rating, taIdentifier)
 
         else:
             form = NewReviewForm()
-    
+
+        if TA != None:
+            context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton, 'TA': TA, 'id':TA['_id']}
+        else:
+            context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton, 'TA': TA}
+        return render( request, 'newReview.html', context)
+       
     else:
         return redirect('../login')
   
-    context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton}
-    return render( request, 'newReview.html', context)
-
-def shitfunction():
-    print("SHIIIT")
