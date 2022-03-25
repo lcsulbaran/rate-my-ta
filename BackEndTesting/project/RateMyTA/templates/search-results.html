@@ -60,7 +60,8 @@
 
 
   <div class="text-center mt-5" style="padding-top: 20px;">
-    <form style="margin: auto;">
+    <form method="POST" action="{% url 'review-results' %}" id="idForm" style="margin: auto;">
+      {% csrf_token %}
 
       {%if data.Name == Null%}
       <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">No Search Results for: "{{searchString}}"</h1>
@@ -73,8 +74,8 @@
             <h1>{{data.Name}}</h1>
             <p class="mb-0">Rating: {{data.Rating}}/10</p>
             <p class="mb-0">School: {{data.School}}</p>
-                        
-            <button type="submit" class="w-25 btn btn-md btn-light mt-3" onclick="views.showReviewResults({id})" >View</button>
+
+            <button type="submit" name="submitButton" value="{{id}}" form="idForm" class="w-25 btn btn-md btn-light mt-3">View</button>
         </div>
       </div>
       {%endif%}

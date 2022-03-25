@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
-from .forms import SearchForm, SignupForm, HiddenForm
+from .forms import SearchForm, SignupForm
 from .forms import LoginForm, NewReviewForm
 from .models import addUser, searchForTA
 from .models import verifyUser, createReview
@@ -59,32 +59,16 @@ def showSearch(request):
 
 def showSearchResults(request, ss):
 
-    # searchButton = request.POST.get("submit")
-
-    # if request.method == 'POST':
-
-    #     form = HiddenForm(request.POST)
-    #     if form.is_valid():
-    #         taId = form.cleaned_data.get("taId")
-    #         return redirect('review-results', ss=taId)
-    
-    # else:
-    #     form = HiddenForm()
-
     data = searchForTA(ss)
     context = {'data': data,"searchString": ss, 'id' : data['_id']}
     return render(request,'search-results.html', context)
 
 
-def showReviewResults(request, ta):
-    # some function to get the TA reviews (findmany)
-    # create context for the data
-    return redirect('reviewResults', ss=ta)
-
-def displayReviews(request, ta):
-    # data = function(ta)
-    # context = {'data': data,"searchString": ss, 'id' : data['_id']}
-    return render(request, 'review-results.html')
+def showReviewResults(request):
+    taId = request.POST.get('submitButton', None)
+    print(taId)
+    # use taId to find all reviews for the TA then create a context to pass to render
+    return render(request, 'reviewResults.html')    
 
 
 def showLogin(request):
