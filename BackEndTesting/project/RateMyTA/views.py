@@ -60,10 +60,13 @@ def showSearch(request):
 def showSearchResults(request, ss):
 
     data = searchForTA(ss)
+    for item in data:
+        item['id'] = str(item['_id'])
+    
     if data != None:
-        context = {'data': data,"searchString": ss, 'id' : data['_id']}
+        context = {'data': data,"searchString": ss, 'results':True}
     else:
-        context = {'data': data,"searchString": ss}
+        context = {'data': data,"searchString": ss, 'results':False}
     return render(request,'search-results.html', context)
 
 

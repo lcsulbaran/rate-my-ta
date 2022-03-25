@@ -5,6 +5,7 @@ import pymongo
 from bson.objectid import ObjectId
 import certifi
 from django.contrib.auth.models import User
+from fuzzywuzzy import fuzz, process
 
 # Create your models here.
 def addUser(name, email, password):
@@ -88,18 +89,26 @@ def searchForTA(searchString):
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
     my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
 
-
     dbname = my_client['RateMyTA']
     collection_name = dbname["TAs"]
 
-    taResult = collection_name.find_one({"Name": searchString})
-    if(taResult == None):
-        print('ta not found, searchString: ' + searchString)
+    allTas = collection_name.find({})
+
+    fuzzTaResult = list()
+
+    for ta in allTas:
+        x = fuzz.partial_ratio(searchString, ta["Name"])
+
+        if x > 50:
+            fuzzTaResult.append(ta)
+
+
+    if(fuzzTaResult == None):
+        print('no ta not found, searchString: ' + searchString)
     else:
-        print(taResult)
-        print(taResult['_id'])
-    
-    return taResult
+        print(fuzzTaResult)
+
+    return fuzzTaResult
 
 
 
@@ -128,13 +137,15 @@ def createReview(title, body, course_code, rating, taId):
     # recalculate rating
     x = rating
     allReviews = list(collection_name.find({"TA_ID": ta_ID}))
-    for review in allReviews:
-        x += review["Rating"]
+    if allReviews != None:
+        for review in allReviews:
+            x += review["Rating"]
 
-    average = x / (len(allReviews) + 1)
+        average = x / (len(allReviews) + 1)
 
-    average = round(average, 2)
-
+        average = round(average, 2)
+    else:
+        average = x
     ta_collection_name = dbname["TAs"]
     ta_collection_name.update_one({"_id" : ObjectId(ta_ID)}, {"$set": { "Rating": average}})
 

@@ -65,35 +65,28 @@
     <form method="POST" action="{% url 'review-results' %}" id="idForm" style="margin: auto;">
       {% csrf_token %}
 
-      {%if data.Name == Null%}
-      <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">No Search Results for:
-        "{{searchString}}"</h1>
-
-      {%else%}
       <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">Search Results for:
         "{{searchString}}"</h1>
 
-      {%endif%}
-      <!-- <div class="form-floating mb-3 w-50 mx-auto">
-        <input type="search" id="floatingInput" class="form-control" placeholder="Name">
-        <label for="floatingInput" class="sr-only">Search TA</label>
-      </div> -->
     </form>
   </div>
 
-  {%if data.Name != Null%}
-  <div class="p-3 mt-5 bg-dark text-white rounded-3 w-50 mx-auto">
-    <div class="container-fluid">
+  {%for item in data%}
+    {%if item.Name != Null%}
+    <div class="p-3 mt-5 bg-dark text-white rounded-3 w-50 mx-auto">
+      <div class="container-fluid">
 
-      <h1>{{data.Name}}</h1>
-      <p class="mb-0">Rating: {{data.Rating}}/10</p>
-      <p class="mb-0">School: {{data.School}}</p>
+        <h1>{{item.Name}}</h1>
+        <p class="mb-0">Rating: {{item.Rating}}/10</p>
+        <p class="mb-0">School: {{item.School}}</p>
 
-      <button type="submit" name="submitButton" value="{{id}}" form="idForm"
-        class="w-25 btn btn-md btn-light mt-3">View</button>
+        <button type="submit" name="submitButton" value="{{item.id}}" form="idForm"
+          class="w-25 btn btn-md btn-light mt-3">View</button>
+      </div>
     </div>
-  </div>
-  {%endif%}
+    {%endif%}
+  {%endfor%}
+
 
 
 
