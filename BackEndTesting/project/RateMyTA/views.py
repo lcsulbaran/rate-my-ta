@@ -11,6 +11,7 @@ from .models import addUser, searchForTA
 from .models import verifyUser, createReview, findReviews, findTAByID
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 # Create your views here.
@@ -27,9 +28,14 @@ def showSignup(request):
             full_name = form.cleaned_data.get("name")
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            addUser(full_name,email,password)
-            newUser = User.objects.create_user(full_name,email,password)
-            return redirect('../login')
+            valid = addUser(full_name,email,password)
+            if(valid == True):
+                newUser = User.objects.create_user(full_name,email,password)
+                return redirect('../login')
+            else:
+                messages.error(request, "Username already exists. Please try again.")
+                return redirect('signup') 
+
     else:
         form = SignupForm()
     context = {'form': form, 'full_name':full_name,'email':email,'password':password,'submitbutton':submitbutton}
@@ -96,6 +102,9 @@ def showLogin(request):
             if user is not None:
                 login(request, user)
                 return redirect('../')
+            else:
+                messages.error(request, "Invalid login information. Please try again.")
+                return redirect('login')
 
     else:
         form = LoginForm()

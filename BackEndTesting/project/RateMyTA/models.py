@@ -7,7 +7,7 @@ import certifi
 from django.contrib.auth.models import User
 
 # Create your models here.
-def addUser(name, email, password):
+def addUser(username, email, password):
 
     ca = certifi.where()
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
@@ -17,16 +17,17 @@ def addUser(name, email, password):
     collection_name = dbname["Students"]
 
     User = {
-        "Name" : name,
+        "Name" : username,
         "Email" : email,
         "Password" : password
     }
 
-    exists = collection_name.find_one({"Email": email})
+    exists = collection_name.find_one({"Name": username})
     if(exists == None):
         collection_name.insert_one(User)
+        return True
     else:
-        print('email is already used')
+        return False
 
 
 
