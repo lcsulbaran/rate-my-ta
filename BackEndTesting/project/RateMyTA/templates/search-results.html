@@ -47,7 +47,7 @@
           </nav>
 
 
-    <div class="text-center mt-5" style = "padding-top: 20px;">
+    <!-- <div class="text-center mt-5" style = "padding-top: 20px;">
         <form style="margin: auto;">
             <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">Search Results for: "Jaxson Waterstreet"</h1>
             <div class="form-floating mb-3 w-50 mx-auto">
@@ -56,7 +56,7 @@
             </div>
         </form>
     </div>
-  </nav>
+  </nav> -->
 
 
   <div class="text-center mt-5" style="padding-top: 20px;">
@@ -73,8 +73,8 @@
             <h1>{{data.Name}}</h1>
             <p class="mb-0">Rating: {{data.Rating}}/10</p>
             <p class="mb-0">School: {{data.School}}</p>
-    
-          <button type="submit" class="w-25 btn btn-md btn-light mt-3"><a href="#" class="link-dark">View</a></button>
+                        
+            <button type="submit" class="w-25 btn btn-md btn-light mt-3" onclick="views.showReviewResults({id})" >View</button>
         </div>
       </div>
       {%endif%}
@@ -108,7 +108,9 @@
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+    crossorigin="anonymous">
+    src="../views.py"
+  </script>
 </body>
 
 </html>

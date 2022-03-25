@@ -62,6 +62,7 @@ def searchForTA(searchString):
         print('ta not found, searchString: ' + searchString)
     else:
         print(taResult)
+        print(taResult['_id'])
     
     return taResult
 

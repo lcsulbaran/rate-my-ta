@@ -19,3 +19,6 @@ class NewReviewForm(forms.Form):
     title = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingTextArea'}))
     body = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'floatingTextArea2', 'style': 'height: 100px'}))
     rating = forms.IntegerField(required=True, widget=forms.NumberInput(attrs={'class': 'form-select', 'id': 'floatingSelect'}))
+
+class HiddenForm(forms.Form):
+    taId = forms.CharField(widget=forms.TextInput(attrs={'id': 'hiddenInput'}))
