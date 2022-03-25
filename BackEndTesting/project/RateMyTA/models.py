@@ -2,6 +2,7 @@ from django.db import models
 from ssl import CERT_NONE, CERT_REQUIRED, SSL_ERROR_SSL, SSL_ERROR_SYSCALL
 from django.conf import settings
 import pymongo
+from bson.objectid import ObjectId
 import certifi
 from django.contrib.auth.models import User
 
@@ -46,6 +47,40 @@ def verifyUser(username, password):
         print('user logged in')
 
 
+def findReviews(taId):
+
+    ca = certifi.where()
+    connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
+    my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
+
+
+    dbname = my_client['RateMyTA']
+    collection_name = dbname["Reviews"]
+
+    reviews = list(collection_name.find({"TA_ID": taId}))
+    if reviews == None:
+        print("No reviews found for this TA")
+    else:
+        print(reviews)
+    return reviews
+
+def findTAByID(taId):
+
+    ca = certifi.where()
+    connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
+    my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
+
+
+    dbname = my_client['RateMyTA']
+    collection_name = dbname["TAs"]
+
+    TA = collection_name.find_one({"_id": ObjectId(taId)})
+    if TA == None:
+        print("No TA found")
+    else:
+        print(TA)
+    return TA
+
 
 def searchForTA(searchString):
 
@@ -80,7 +115,6 @@ def createReview(title, body, course_code, rating):
     dbname = my_client['RateMyTA']
     collection_name = dbname["Reviews"]
 
-    student_ID = 0
     ta_ID = 0
 
     Review = {

@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 from .forms import SearchForm, SignupForm
 from .forms import LoginForm, NewReviewForm
 from .models import addUser, searchForTA
-from .models import verifyUser, createReview
+from .models import verifyUser, createReview, findReviews, findTAByID
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 
@@ -60,7 +60,10 @@ def showSearch(request):
 def showSearchResults(request, ss):
 
     data = searchForTA(ss)
-    context = {'data': data,"searchString": ss, 'id' : data['_id']}
+    if data != None:
+        context = {'data': data,"searchString": ss, 'id' : data['_id']}
+    else:
+        context = {'data': data,"searchString": ss}
     return render(request,'search-results.html', context)
 
 
@@ -68,8 +71,20 @@ def showReviewResults(request):
     taId = request.POST.get('submitButton', None)
     print(taId)
     # use taId to find all reviews for the TA then create a context to pass to render
-    return render(request, 'reviewResults.html')    
+    reviews = findReviews(taId)
+    TA = findTAByID(taId)
+    if reviews != None:
+        context = {'reviews': reviews, 'size':len(reviews), 'TA': TA, 'id':TA['_id']}
+    else:
+        context = {'reviews': reviews, 'size':len(reviews), 'TA': TA}
+    return render(request, 'reviewResults.html', context)    
 
+def showNewReview(request):
+    taId = request.POST.get('startReviewButton', None)
+    print(taId)
+    # use taId to find all reviews for the TA then create a context to pass to render
+    createReview(taId)
+    return render(request, 'newReview.html', context)    
 
 def showLogin(request):
     logout(request)
@@ -105,8 +120,6 @@ def showNewReview(request):
         rating=''
         title = ''
 
-        print(request.method)
-
         if request.method == 'POST':
             form = NewReviewForm(request.POST)
 
@@ -116,8 +129,6 @@ def showNewReview(request):
                 courseCode = form.cleaned_data.get("courseCode")
                 rating = form.cleaned_data.get("rating")
                 createReview(title, body, courseCode, rating)
-            else:
-                print(form.errors)
 
         else:
             form = NewReviewForm()
@@ -128,3 +139,5 @@ def showNewReview(request):
     context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton}
     return render( request, 'newReview.html', context)
 
+def shitfunction():
+    print("SHIIIT")

@@ -25,7 +25,7 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto text-center">
-                  <a class="nav-link" href='../search'>Search</a>
+                  <a class="nav-link" href='../'>Search</a>
                   <a class="nav-link" href='../login'>Login</a>
                   <a class="nav-link" href='../signup'>Signup</a>
                 </div>
@@ -36,13 +36,13 @@
         <div class="container text-center" style="margin-top: 70px;">
           <div class="row">
             <div class="col">
-                <h1 style="font-family: 'Inter', sans-serif; font-size: 50px;" class="fw-bold mb-4">2/10</h1>
+                <h1 style="font-family: 'Inter', sans-serif; font-size: 50px;" class="fw-bold mb-4">{{TA.Rating}}/10</h1>
             </div>
             <div class="col-6">
-                <h1 style="font-family: 'Inter', sans-serif; font-size: 50px;" class="fw-bold mb-4">Jaxson Waterstreet</h1>
+                <h1 style="font-family: 'Inter', sans-serif; font-size: 50px;" class="fw-bold mb-4">{{TA.Name}}</h1>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-dark btn-lg" style="height: 100px;" href="new-review">Write a Review</button>
+                <button name="startReviewButton" type="submit" form="startReviewForm" class="btn btn-dark btn-lg" style="height: 100px;" value="{{id}}">Write a Review</button>
             </div>
           </div>
           <hr class="my-4" style="height: 3px; border: 3px">
@@ -52,28 +52,21 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-3" style="margin-top: 40px;">
-                    <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">2 Reviews</h1>
+                    <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">{{size}} Reviews</h1>
                 </div>
             </div>
         </div>
 
+        {% for item in reviews %}
         <div class="p-3 mt-5 bg-dark text-white rounded-3 w-50 mx-auto">
             <div class="container">
-                <h1>This guy eats chilly cheese dogs...</h1>
-                <h5 class="mt-4">Course Code: DQ 469</h5>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <h5 class="mt-4">Rating: 2/10</h5>
+                <h1>{{item.Title}}</h1>
+                <h5 class="mt-4">{{item.CourseCode}}</h5>
+                <p class="mb-0">{{item.Body}}</p>
+                <h5 class="mt-4">{{item.Rating}}/10</h5>
            </div>
         </div>
-
-        <div class="p-3 mt-5 bg-dark text-white rounded-3 w-50 mx-auto">
-            <div class="container">
-                <h1>Idk what to say bro...</h1>
-                <h5 class="mt-4">Course Code: COOK 101</h5>
-                <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <h5 class="mt-4">Rating: 2/10</h5>
-           </div>
-        </div>
+        {%endfor%}
 
     <div class=" text-center mt-5 pt-5">
         <p class="fw-bold">©RateMyTA 2022</p>
@@ -81,6 +74,6 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"> src="../views.py"</script>
   </body>
 </html>
