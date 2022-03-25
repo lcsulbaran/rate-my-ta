@@ -70,11 +70,12 @@ def showSearchResults(request, ss):
 def showReviewResults(request):
     taId = request.POST.get('submitButton', None)
     reviews = findReviews(taId)
+    orderedReviews = reversed(reviews)
     TA = findTAByID(taId)
     if reviews != None:
-        context = {'reviews': reviews, 'size':len(reviews), 'TA': TA, 'id':TA['_id']}
+        context = {'reviews': orderedReviews, 'size':len(reviews), 'TA': TA, 'id':TA['_id']}
     else:
-        context = {'reviews': reviews, 'size':len(reviews), 'TA': TA}
+        context = {'reviews': orderedReviews, 'size':len(reviews), 'TA': TA}
     return render(request, 'reviewResults.html', context)    
   
 def showLogin(request):
@@ -124,6 +125,7 @@ def showNewReview(request):
                 rating = form.cleaned_data.get("rating")
                 taIdentifier = form.cleaned_data.get("taID")
                 createReview(title, body, courseCode, rating, taIdentifier)
+                return redirect('../')
 
         else:
             form = NewReviewForm()
