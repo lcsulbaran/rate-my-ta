@@ -120,10 +120,24 @@ def createReview(title, body, course_code, rating, taId):
     Review = {
         "Title": title,
         "Body" : body,
-        "Course Code" : course_code,
+        "CourseCode" : course_code,
         "Rating" : rating,
         "TA_ID": ta_ID
     }
+
+    # recalculate rating
+    x = rating
+    allReviews = list(collection_name.find({"TA_ID": ta_ID}))
+    for review in allReviews:
+        x += review["Rating"]
+
+    average = x / (len(allReviews) + 1)
+
+    average = round(average, 2)
+
+    ta_collection_name = dbname["TAs"]
+    ta_collection_name.update_one({"_id" : ObjectId(ta_ID)}, {"$set": { "Rating": average}})
+
 
     if collection_name.insert_one(Review) != None:
         print("Review added")
