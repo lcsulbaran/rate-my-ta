@@ -25,4 +25,5 @@ urlpatterns = [
     path('search-results/<str:ss>/', views.showSearchResults, name='searchResults'),
     path('new-review/', views.showNewReview, name='new-review'),
     path('review-results/', views.showReviewResults, name='review-results'),
+    path('ta-request/', views.showTARequest, name = 'ta-request'),
 ]

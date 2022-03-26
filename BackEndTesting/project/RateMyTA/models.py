@@ -100,7 +100,7 @@ def searchForTA(searchString):
     for ta in allTas:
         x = fuzz.partial_ratio(searchString, ta["Name"])
 
-        if x > 50:
+        if x > 65:
             fuzzTaResult.append(ta)
 
 
@@ -155,3 +155,7 @@ def createReview(title, body, course_code, rating, taId):
         print("Review added")
     else:
         print("Error, review not added")
+
+
+    #def createTARequest(name, school):
+        
