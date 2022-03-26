@@ -60,9 +60,15 @@
       <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">Search Results for:
         "{{searchString}}" </h1> 
     </form>
+    {% if user.is_authenticated %}
     <a href = "../../ta-request">
-      <button type="button" name="submitButton" class="w-25 btn btn-md btn-dark mt-3">Can't Find Your TA?</button>
+      <button type="button" name="submitButton" class="w-40 btn btn-md btn-dark mt-3">Can't Find Your TA? Click Here to Request a New TA</button>
     </a>
+    {% else %}
+    <a href = "../../login">
+      <button type="button" name="submitButton" class="w-40 btn btn-md btn-dark mt-3">Can't Find Your TA? Login to Request a New TA</button>
+    </a>
+    {% endif %}
   </div>
   {%for item in data%}
   {%if item.Name != Null%}

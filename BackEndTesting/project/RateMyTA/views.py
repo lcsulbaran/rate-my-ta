@@ -6,8 +6,8 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .forms import SearchForm, SignupForm, TaRequestForm
 from .forms import LoginForm, NewReviewForm
-from .models import addUser, searchForTA
-from .models import verifyUser, createReview, findReviews, findTAByID
+from .models import searchForTA
+from .models import createReview, findReviews, findTAByID
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -179,10 +179,11 @@ def showNewReview(request):
 
 # render ta-request.html
 def showTARequest(request): 
-    submitbutton = request.POST.get("submit")
+    if request.user.is_authenticated:
+        submitbutton = request.POST.get("submit")
 
-    name = ''
-    school = ''
+        name = ''
+        school = ''
 
     if request.method == 'POST':
         form = TaRequestForm(request.POST)
@@ -198,8 +199,11 @@ def showTARequest(request):
             messages.success(request, 'New TA Request Submitted!')
             return redirect('../')
 
-            
+                
+        else:
+            form = TaRequestForm()
+        context = {'form':form, 'submitbutton':submitbutton}
+        return render(request, 'ta-request.html', context)
+        
     else:
-        form = TaRequestForm()
-    context = {'form':form, 'submitbutton':submitbutton}
-    return render(request, 'ta-request.html', context)
+        return redirect('../login')
