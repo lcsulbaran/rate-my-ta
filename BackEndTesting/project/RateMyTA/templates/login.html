@@ -39,10 +39,12 @@
             {% if messages %}
             <ul class="messages">
             {% for message in messages %}
+            {%if 'success' in message.tags%}
             <div id="messages" class="alert alert-success alert-dismissible mx-auto" role="alert" style="position: relative; margin-top:10px; width: 90%;">
               {{ message }}
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+            {% endif %}
             {% endfor %}
           </ul>
           {% endif %}
@@ -63,9 +65,11 @@
             </div>
             {% if messages %}
             {% for message in messages %}
+            {%if 'error' in message.tags%}
             <div class="alert alert-danger" role="alert">
               {{ message }}
             </div>
+            {% endif %}
             {% endfor %}
             {% endif %}
             <div class="mt-3">
