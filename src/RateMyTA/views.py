@@ -185,24 +185,24 @@ def showTARequest(request):
         name = ''
         school = ''
 
-    if request.method == 'POST':
-        form = TaRequestForm(request.POST)
-            
-        if form.is_valid():
-        # if form is valid get name, school from page
-            name = form.cleaned_data.get("name")
-            school = form.cleaned_data.get("school")
-            msg = 'TA Name:' + name + ' School:' + school
-            subject = 'New TA Request'
-        # send email to admin detailing TA request
-            send_mail(subject = subject, message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list =[settings.RECIPIENT_ADDRESS])
-            messages.success(request, 'New TA Request Submitted!')
-            return redirect('../')
-
+        if request.method == 'POST':
+            form = TaRequestForm(request.POST)
                 
+            if form.is_valid():
+            # if form is valid get name, school from page
+                name = form.cleaned_data.get("name")
+                school = form.cleaned_data.get("school")
+                msg = 'TA Name:' + name + ' School:' + school
+                subject = 'New TA Request'
+            # send email to admin detailing TA request
+                send_mail(subject = subject, message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list =[settings.RECIPIENT_ADDRESS])
+                messages.success(request, 'New TA Request Submitted!')
+                return redirect('../')
+
         else:
             form = TaRequestForm()
-        context = {'form':form, 'submitbutton':submitbutton}
+
+        context = { 'form': form, 'submitbutton': submitbutton}
         return render(request, 'ta-request.html', context)
         
     else:
