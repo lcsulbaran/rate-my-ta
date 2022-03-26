@@ -107,3 +107,5 @@ def createReview(title, body, course_code, rating, taId):
     # update the database to match newly calculated rating
     ta_collection_name = dbname["TAs"]
     ta_collection_name.update_one({"_id" : ObjectId(ta_ID)}, {"$set": { "Rating": average}})
+
+    collection_name.insert_one(Review)
