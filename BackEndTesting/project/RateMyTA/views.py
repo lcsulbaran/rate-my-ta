@@ -4,7 +4,6 @@ from urllib import request
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-
 from .forms import SearchForm, SignupForm, TaRequestForm
 from .forms import LoginForm, NewReviewForm
 from .models import addUser, searchForTA
@@ -14,7 +13,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 
-# Create your views here.
+
+# 
 def showSignup(request):
     submitbutton= request.POST.get("submit")
 
@@ -28,14 +28,13 @@ def showSignup(request):
             full_name = form.cleaned_data.get("name")
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            valid = addUser(full_name,email,password)
-            if(valid == True):
+            if(User.objects.filter(username=full_name).exists()):
+                messages.error(request, "Username already exists. Please try again.")
+                return redirect('signup')                 
+            else:
                 newUser = User.objects.create_user(full_name,email,password)
                 messages.success(request, 'Sign up successful')
                 return redirect('../login')
-            else:
-                messages.error(request, "Username already exists. Please try again.")
-                return redirect('signup') 
 
     else:
         form = SignupForm()
@@ -43,6 +42,8 @@ def showSignup(request):
     return render( request, 'signup.html', context)
 
 
+
+# shows the search page
 def showSearch(request):
 
     searchButton = request.POST.get("submit")
@@ -55,13 +56,14 @@ def showSearch(request):
         if form.is_valid():
             searchString = form.cleaned_data.get("searchQuery")
             # searchForTA(searchString)
-            return redirect('searchResults', ss=searchString)
+            return redirect('search-results', ss=searchString)
 
     else:
         form = SearchForm()
 
     context = {'form': form,'searchString': searchString, 'searchButton':searchButton}
     return render(request, 'search.html', context)
+
 
 
 def showSearchResults(request, ss):
@@ -77,6 +79,7 @@ def showSearchResults(request, ss):
     return render(request,'search-results.html', context)
 
 
+
 def showReviewResults(request):
     taId = request.POST.get('submitButton', None)
     reviews = findReviews(taId)
@@ -86,8 +89,10 @@ def showReviewResults(request):
         context = {'reviews': orderedReviews, 'size':len(reviews), 'TA': TA, 'id':TA['_id']}
     else:
         context = {'reviews': orderedReviews, 'size':len(reviews), 'TA': TA}
-    return render(request, 'reviewResults.html', context)    
+    return render(request, 'review-results.html', context)    
   
+
+
 def showLogin(request):
     logout(request)
     submitbutton= request.POST.get("submit")
@@ -101,7 +106,6 @@ def showLogin(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
-            verifyUser(username,password)
             user = authenticate(username = username, password = password)
             if user is not None:
                 login(request, user)
@@ -149,10 +153,11 @@ def showNewReview(request):
             context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton, 'TA': TA, 'id':TA['_id']}
         else:
             context = {'form': form, 'title':title,'body':body,'courseCode':courseCode,'rating':rating, 'submitbutton': submitbutton, 'TA': TA}
-        return render( request, 'newReview.html', context)
+        return render( request, 'new-review.html', context)
        
     else:
         return redirect('../login')
+
 
 
 def showTARequest(request): 
@@ -172,6 +177,3 @@ def showTARequest(request):
         form = TaRequestForm()
     context = {'form':form, 'submitbutton':submitbutton}
     return render(request, 'ta-request.html', context)
-                
-
-  

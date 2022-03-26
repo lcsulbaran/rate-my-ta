@@ -10,38 +10,36 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    
 
-    <title>Sign Up</title>
+    <title>New TA Request</title>
 
   </head>
   <body style="background-color: #6d6875;">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href='../'>RateMyTA</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav ms-auto">
-                    <li>
-                        <a class="nav-link text-white" href='../login'>Log In</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-white" href='../'>Back to Homepage</a>
-                    </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href='../'>RateMyTA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link text-white" href='../'>Search</a>
+            {% if user.is_authenticated %}
+              <a class="nav-link text-white" href='../login'>Logout</a> 
+            {% else %}     
+              <a class="nav-link text-white" href='../login'>Login</a>
+              <a class="nav-link text-white" href='../signup'>Signup</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
 
     <div class="text-center mt-5" style = "padding-top: 120px;">
         <form method = "POST" action="" style="max-width: 300px; margin: auto;">
             {% csrf_token %}
-            <h1 style="font-family: 'Inter', sans-serif; font-size: 60px;" class="fw-bold mb-5">RateMyTA</h1>
-            <h1 class="h3 mb-3">Request TA</h1>
+            <h1 class="h3 mb-3">Request a New TA:</h1>
             <div class="form-floating mb-3">
                 {{form.name}}
                 <label for="floatingInput" class ="sr-only">TA Name</label>
@@ -65,9 +63,7 @@
         <div class="mt-5 pt-5">
             <p class="fw-bold">©RateMyTA 2022</p>
         </div>
-    </div>
-
-    
+    </div> 
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
