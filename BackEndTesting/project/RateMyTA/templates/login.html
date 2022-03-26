@@ -36,16 +36,18 @@
             </div>
           </nav>
 
-          {% if messages %}
-              <ul class="messages">
-              {% for message in messages %}
-              <div id="messages" class="alert alert-success alert-dismissible mx-auto" role="alert" style="position: relative; margin-top:10px; width: 90%;">
-                {{ message }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-              {% endfor %}
-            </ul>
-            {% endif %}   
+          <div class = "mx-auto" style="position: fixed; width: 100%;">
+            {% if messages %}
+            <ul class="messages">
+            {% for message in messages %}
+            <div id="messages" class="alert alert-success alert-dismissible mx-auto" role="alert" style="position: relative; margin-top:10px; width: 90%;">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          </div>  
 
 
     <div class="text-center mt-5" style = "padding-top: 120px;">
