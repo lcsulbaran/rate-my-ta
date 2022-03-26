@@ -97,7 +97,7 @@ def showLogin(request):
             user = authenticate(username = username, password = password)
             if user is not None:
                 login(request, user)
-                messages.success(request, 'You logged in')
+                messages.success(request, 'You are logged in!')
                 return redirect('../')
 
     else:
@@ -128,7 +128,7 @@ def showNewReview(request):
                 rating = form.cleaned_data.get("rating")
                 taIdentifier = form.cleaned_data.get("taID")
                 createReview(title, body, courseCode, rating, taIdentifier)
-                messages.success(request, 'Review was created successfully')
+                messages.success(request, 'Review was created successfully!')
                 return redirect('../')
 
         else:
