@@ -11,6 +11,7 @@ from .models import addUser, searchForTA
 from .models import verifyUser, createReview, findReviews, findTAByID
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 
 # Create your views here.
@@ -29,6 +30,7 @@ def showSignup(request):
             password = form.cleaned_data.get("password")
             addUser(full_name,email,password)
             newUser = User.objects.create_user(full_name,email,password)
+            messages.success(request, 'Sign up successful')
             return redirect('../login')
     else:
         form = SignupForm()
@@ -95,6 +97,7 @@ def showLogin(request):
             user = authenticate(username = username, password = password)
             if user is not None:
                 login(request, user)
+                messages.success(request, 'You logged in')
                 return redirect('../')
 
     else:
@@ -125,6 +128,7 @@ def showNewReview(request):
                 rating = form.cleaned_data.get("rating")
                 taIdentifier = form.cleaned_data.get("taID")
                 createReview(title, body, courseCode, rating, taIdentifier)
+                messages.success(request, 'Review was created successfully')
                 return redirect('../')
 
         else:
