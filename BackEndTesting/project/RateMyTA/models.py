@@ -155,3 +155,7 @@ def createReview(title, body, course_code, rating, taId):
         print("Review added")
     else:
         print("Error, review not added")
+
+
+    #def createTARequest(name, school):
+        

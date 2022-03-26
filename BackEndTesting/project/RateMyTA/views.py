@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
-from .forms import SearchForm, SignupForm
+from .forms import SearchForm, SignupForm, TaRequestForm
 from .forms import LoginForm, NewReviewForm
 from .models import addUser, searchForTA
 from .models import verifyUser, createReview, findReviews, findTAByID
@@ -153,4 +153,25 @@ def showNewReview(request):
        
     else:
         return redirect('../login')
+
+
+def showTARequest(request): 
+    submitbutton = request.POST.get("submit")
+
+    name = ''
+    school = ''
+
+    if request.method == 'POST':
+        form = TaRequestForm(request.POST)
+            
+        if form.is_valid():
+            name = form.cleaned_data.get("name")
+            school = form.cleaned_data.get("school")
+            
+    else:
+        form = TaRequestForm()
+    context = {'form':form, 'submitbutton':submitbutton}
+    return render(request, 'ta-request.html', context)
+                
+
   
