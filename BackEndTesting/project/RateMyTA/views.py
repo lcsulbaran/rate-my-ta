@@ -178,6 +178,7 @@ def showTARequest(request):
             subject = 'New TA Request'
 
             send_mail(subject = subject, message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list =[settings.RECIPIENT_ADDRESS])
+            messages.success(request, 'New TA Request Submitted!')
             return redirect('../')
 
             
