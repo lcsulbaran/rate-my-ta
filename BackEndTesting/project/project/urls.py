@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.showLogin, name='login'),
     path('signup/', views.showSignup, name='signup'),
-    path('search-results/<str:ss>/', views.showSearchResults, name='searchResults'),
+    path('search-results/<str:ss>/', views.showSearchResults, name='search-results'),
     path('new-review/', views.showNewReview, name='new-review'),
     path('review-results/', views.showReviewResults, name='review-results'),
     path('ta-request/', views.showTARequest, name = 'ta-request'),

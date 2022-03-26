@@ -53,19 +53,6 @@
     </div>
   </nav>
 
-
-  <!-- <div class="text-center mt-5" style = "padding-top: 20px;">
-        <form style="margin: auto;">
-            <h1 style="font-family: 'Inter', sans-serif; font-size: 30px;" class="fw-bold mb-4">Search Results for: "Jaxson Waterstreet"</h1>
-            <div class="form-floating mb-3 w-50 mx-auto">
-                <input type="search" id ="floatingInput" class="form-control" placeholder="Name">
-                <label for="floatingInput" class ="sr-only">Search TA</label>
-            </div>
-        </form>
-    </div>
-  </nav> -->
-
-
   <div class="text-center mt-5" style="padding-top: 20px;">
     <form method="POST" action="{% url 'review-results' %}" id="idForm" style="margin: auto;">
       {% csrf_token %}
@@ -74,7 +61,7 @@
         "{{searchString}}" </h1> 
     </form>
     <a href = "../../ta-request">
-      <button type="button" name="submitButton" class="w-25 btn btn-md btn-light mt-3">Can't Find Your TA?</button>
+      <button type="button" name="submitButton" class="w-25 btn btn-md btn-dark mt-3">Can't Find Your TA?</button>
     </a>
   </div>
   {%for item in data%}
@@ -93,25 +80,9 @@
   {%endif%}
   {%endfor%}
 
-
-
-
-  <!-- <div class="p-3 mt-5 bg-dark text-white rounded-3 w-50 mx-auto">
-    <div class="container-fluid">
-     
-        <h1>{{data.Name}}</h1>
-        <p class="mb-0">{{data.Rating}}</p>
-        <p class="mb-0">{{data.School}}</p>
-
-      <button type="submit" class="w-25 btn btn-md btn-light mt-3"><a href="#" class="link-dark">View</a></button>
-    </div>
-  </div> -->
-
   <div class=" text-center mt-5 pt-5 ">
     <p class="fw-bold">©RateMyTA 2022</p>
   </div>
-
-
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

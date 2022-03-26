@@ -49,12 +49,12 @@ def verifyUser(username, password):
         print('user logged in')
 
 
+
 def findReviews(taId):
 
     ca = certifi.where()
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
     my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
-
 
     dbname = my_client['RateMyTA']
     collection_name = dbname["Reviews"]
@@ -66,12 +66,13 @@ def findReviews(taId):
         print(reviews)
     return reviews
 
+
+
 def findTAByID(taId):
 
     ca = certifi.where()
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
     my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
-
 
     dbname = my_client['RateMyTA']
     collection_name = dbname["TAs"]
@@ -82,6 +83,7 @@ def findTAByID(taId):
     else:
         print(TA)
     return TA
+
 
 
 def searchForTA(searchString):
@@ -103,7 +105,6 @@ def searchForTA(searchString):
         if x > 65:
             fuzzTaResult.append(ta)
 
-
     if(fuzzTaResult == None):
         print('no ta not found, searchString: ' + searchString)
     else:
@@ -115,9 +116,6 @@ def searchForTA(searchString):
 
 def createReview(title, body, course_code, rating, taId):
 
-    print("inside createReview")
-
-    
     ca = certifi.where()
     connect_string =  f"mongodb+srv://adamabouelhassan:RateMyTA@cluster0.al5jt.mongodb.net/RateMyTA?retryWrites=true&w=majority"
     my_client = pymongo.MongoClient(connect_string, tlsCAFile=ca)
@@ -150,12 +148,7 @@ def createReview(title, body, course_code, rating, taId):
     ta_collection_name = dbname["TAs"]
     ta_collection_name.update_one({"_id" : ObjectId(ta_ID)}, {"$set": { "Rating": average}})
 
-
     if collection_name.insert_one(Review) != None:
         print("Review added")
     else:
         print("Error, review not added")
-
-
-    #def createTARequest(name, school):
-        
