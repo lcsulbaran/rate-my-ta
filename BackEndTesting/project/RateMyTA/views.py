@@ -31,6 +31,7 @@ def showSignup(request):
             valid = addUser(full_name,email,password)
             if(valid == True):
                 newUser = User.objects.create_user(full_name,email,password)
+                messages.success(request, 'Sign up successful')
                 return redirect('../login')
             else:
                 messages.error(request, "Username already exists. Please try again.")
@@ -104,6 +105,7 @@ def showLogin(request):
             user = authenticate(username = username, password = password)
             if user is not None:
                 login(request, user)
+                messages.success(request, 'You logged in')
                 return redirect('../')
             else:
                 messages.error(request, "Invalid login information. Please try again.")
@@ -137,6 +139,7 @@ def showNewReview(request):
                 rating = form.cleaned_data.get("rating")
                 taIdentifier = form.cleaned_data.get("taID")
                 createReview(title, body, courseCode, rating, taIdentifier)
+                messages.success(request, 'Review was created successfully')
                 return redirect('../')
 
         else:
