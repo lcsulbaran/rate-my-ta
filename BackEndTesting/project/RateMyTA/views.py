@@ -163,26 +163,30 @@ def showNewReview(request):
 
 
 def showTARequest(request): 
-    submitbutton = request.POST.get("submit")
+    if request.user.is_authenticated:
+        submitbutton = request.POST.get("submit")
 
-    name = ''
-    school = ''
+        name = ''
+        school = ''
 
-    if request.method == 'POST':
-        form = TaRequestForm(request.POST)
-            
-        if form.is_valid():
-            name = form.cleaned_data.get("name")
-            school = form.cleaned_data.get("school")
-            msg = 'TA Name:' + name + ' School:' + school
-            subject = 'New TA Request'
+        if request.method == 'POST':
+            form = TaRequestForm(request.POST)
+                
+            if form.is_valid():
+                name = form.cleaned_data.get("name")
+                school = form.cleaned_data.get("school")
+                msg = 'TA Name:' + name + ' School:' + school
+                subject = 'New TA Request'
 
-            send_mail(subject = subject, message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list =[settings.RECIPIENT_ADDRESS])
-            messages.success(request, 'New TA Request Submitted!')
-            return redirect('../')
+                send_mail(subject = subject, message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list =[settings.RECIPIENT_ADDRESS])
+                messages.success(request, 'New TA Request Submitted!')
+                return redirect('../')
 
-            
+                
+        else:
+            form = TaRequestForm()
+        context = {'form':form, 'submitbutton':submitbutton}
+        return render(request, 'ta-request.html', context)
+        
     else:
-        form = TaRequestForm()
-    context = {'form':form, 'submitbutton':submitbutton}
-    return render(request, 'ta-request.html', context)
+        return redirect('../login')
