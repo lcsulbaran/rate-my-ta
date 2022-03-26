@@ -61,6 +61,13 @@
                 {{form.password}}
                 <label for="floatingPassword" class ="sr-only">Password</label>
             </div>
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+              {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
             <div class="mt-3">
                 <button name="submit" type = "submit" class="w-100 btn btn-lg btn-dark"> Log In </button>
             </div>

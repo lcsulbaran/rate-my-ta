@@ -28,10 +28,15 @@ def showSignup(request):
             full_name = form.cleaned_data.get("name")
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
-            addUser(full_name,email,password)
-            newUser = User.objects.create_user(full_name,email,password)
-            messages.success(request, 'Sign up successful')
-            return redirect('../login')
+            valid = addUser(full_name,email,password)
+            if(valid == True):
+                newUser = User.objects.create_user(full_name,email,password)
+                messages.success(request, 'Sign up successful')
+                return redirect('../login')
+            else:
+                messages.error(request, "Username already exists. Please try again.")
+                return redirect('signup') 
+
     else:
         form = SignupForm()
     context = {'form': form, 'full_name':full_name,'email':email,'password':password,'submitbutton':submitbutton}
@@ -62,10 +67,13 @@ def showSearch(request):
 def showSearchResults(request, ss):
 
     data = searchForTA(ss)
+    for item in data:
+        item['id'] = str(item['_id'])
+    
     if data != None:
-        context = {'data': data,"searchString": ss, 'id' : data['_id']}
+        context = {'data': data,"searchString": ss, 'results':True}
     else:
-        context = {'data': data,"searchString": ss}
+        context = {'data': data,"searchString": ss, 'results':False}
     return render(request,'search-results.html', context)
 
 
@@ -99,6 +107,9 @@ def showLogin(request):
                 login(request, user)
                 messages.success(request, 'You logged in')
                 return redirect('../')
+            else:
+                messages.error(request, "Invalid login information. Please try again.")
+                return redirect('login')
 
     else:
         form = LoginForm()
