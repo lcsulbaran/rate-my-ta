@@ -11,6 +11,8 @@ from .models import verifyUser, createReview, findReviews, findTAByID
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 
@@ -172,6 +174,12 @@ def showTARequest(request):
         if form.is_valid():
             name = form.cleaned_data.get("name")
             school = form.cleaned_data.get("school")
+            msg = 'TA Name:' + name + ' School:' + school
+            subject = 'New TA Request'
+
+            send_mail(subject = subject, message=msg,from_email=settings.EMAIL_HOST_USER,recipient_list =[settings.RECIPIENT_ADDRESS])
+            return redirect('../')
+
             
     else:
         form = TaRequestForm()
