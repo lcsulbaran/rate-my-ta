@@ -2,12 +2,11 @@ from django.test import TestCase
 from .forms import SearchForm, SignupForm, TaRequestForm
 from .forms import LoginForm, NewReviewForm, TaRequestForm
 from django.contrib.auth.models import User
-
-from django.contrib.auth.models import User
+from django.urls import reverse
 from django.contrib.auth import authenticate
 
 # additional test cases are included in the seleniumTests folder
-# the addition test cases are for demonstrating the flow between web pages
+# the additional test cases are for demonstrating the flow between web pages
 
 class loginTests(TestCase):
 
