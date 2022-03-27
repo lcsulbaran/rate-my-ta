@@ -1,32 +1,32 @@
 from django.test import TestCase
 from .forms import SearchForm, SignupForm, TaRequestForm
-from .forms import LoginForm, NewReviewForm
+from .forms import LoginForm, NewReviewForm, TaRequestForm
 from django.contrib.auth.models import User
 
 
 #Harry
-class loginTests(TestCase):
+# class loginTests(TestCase):
 
-    def test_loginPage(self):
-    # testing
-    def test_invalidLoginUserDoesNotExist(self):
+#     def test_loginPage(self):
+#     # testing
+#     def test_invalidLoginUserDoesNotExist(self):
 
-    def test_validLogin(self):
+#     def test_validLogin(self):
 
-    def test_incompleteLoginFormNotFilled(self):
+#     def test_incompleteLoginFormNotFilled(self):
 
 #Luis
-class signupTests(TestCase):
-    #testing
-    def test_signupPage(self):
+# class signupTests(TestCase):
+#     #testing
+#     def test_signupPage(self):
 
-    def test_validSignup(self):
+#     def test_validSignup(self):
 
-    def test_invalidSignupUserExists(self):
+#     def test_invalidSignupUserExists(self):
 
-    def test_invalidSignupIncompleteForm(self):
+#     def test_invalidSignupIncompleteForm(self):
 
-    def test_invalidSignupEmailFormatError(self):  
+#     def test_invalidSignupEmailFormatError(self):  
 
 #John
 class viewSearchResults(TestCase):
@@ -47,16 +47,16 @@ class viewSearchResults(TestCase):
         # test_viewNoResults()
         # test_viewValidResults()
 
-Adam
-class viewReviewResults(TestCase):
+# Adam
+# class viewReviewResults(TestCase):
 
-    def test_reviewResultsPage(self):
+#     def test_reviewResultsPage(self):
 
-    def test_viewOneReview(self):
+#     def test_viewOneReview(self):
 
-    def test_viewNoReviews(self):
+#     def test_viewNoReviews(self):
 
-    def test_viewMultipleReviews(self):
+#     def test_viewMultipleReviews(self):
 
 
 class writeNewReview(TestCase):
@@ -92,7 +92,20 @@ class writeNewReview(TestCase):
 class requestNewTa(TestCase):
 
     def test_newTAPage(self):
+        User.objects.create_user(username='testuser', email='test@mail.com', password='hello123')
+        self.client.login(username='testuser', password='hello123')
+        response = self.client.get('/ta-request/')
+        self.assertEqual(response.status_code, 200)
 
     def test_newTAFormNotComplete(self):
+        form = TaRequestForm(data={
+            'name' : 'mike'
+        })
+        self.assertFalse(form.is_valid())
 
     def test_newTAValid(self):
+        form = TaRequestForm(data={
+            'name' : 'mike',
+            'school': 'test school'
+        })
+        self.assertTrue(form.is_valid())
