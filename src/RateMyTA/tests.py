@@ -6,28 +6,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 
+# additional test cases are included in the seleniumTests folder
+# the addition test cases are for demonstrating the flow between web pages
 
-#Harry
 class loginTests(TestCase):
 
-    # done
+    # test that the login page is successfully rendered
     def test_loginPage(self):
         response = self.client.get('/login/')
         self.assertEqual(response.status_code, 200)
 
-    # this might not be valid, could use selenium
+    # 
     def test_invalidLoginUserDoesNotExist(self):
         newUser = User.objects.create_user('harry', 'harry@email.com', 'pa$$word')
         user = authenticate(username = 'jaxson', password = 'pa$$word')
         self.assertEqual(user, None)
 
-    # this might not be valid, could use selenium
+    # 
     def test_validLogin(self):
         newUser = User.objects.create_user('harry', 'harry@email.com', 'pa$$word')
         user = authenticate(username = 'harry', password = 'pa$$word')
         self.assertNotEqual(user, None)
         
-    # done
+    # 
     def test_incompleteLoginFormNotFilled(self):
         incompleteForm = LoginForm(data={
             'username': '',
@@ -35,9 +36,9 @@ class loginTests(TestCase):
         })
         self.assertFalse(incompleteForm.is_valid())
 
-
+        
 class signupTests(TestCase):
-#     #testing
+
      def test_signupPage(self):
         response = self.client.get('/signup/')
         self.assertEqual(response.status_code, 200)
@@ -57,12 +58,9 @@ class signupTests(TestCase):
             'email': '',
             'password': ''
          })
-
         self.assertFalse(form.is_valid())
 
-#     def test_invalidSignupEmailFormatError(self):  
-
-#John
+        
 class viewSearchResults(TestCase):
 
     # Tests that the search page returned is valid
@@ -77,22 +75,7 @@ class viewSearchResults(TestCase):
         })
         self.assertTrue(form.is_valid())
 
-    # The rest of the test cases are in Selenium. These include:
-        # test_viewNoResults()
-        # test_viewValidResults()
-
-# Adam
-# class viewReviewResults(TestCase):
-
-#     def test_reviewResultsPage(self):
-
-#     def test_viewOneReview(self):
-
-#     def test_viewNoReviews(self):
-
-#     def test_viewMultipleReviews(self):
-
-
+        
 class writeNewReview(TestCase):
 
     # Tests that the search page returned is valid
@@ -122,7 +105,7 @@ class writeNewReview(TestCase):
         })
         self.assertTrue(form.is_valid())
 
-#Kenny
+
 class requestNewTa(TestCase):
 
     def test_newTAPage(self):
@@ -143,4 +126,3 @@ class requestNewTa(TestCase):
             'school': 'test school'
         })
         self.assertTrue(form.is_valid())
-
