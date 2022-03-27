@@ -3,19 +3,39 @@ from .forms import SearchForm, SignupForm, TaRequestForm
 from .forms import LoginForm, NewReviewForm, TaRequestForm
 from django.contrib.auth.models import User
 
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
+
 
 #Harry
-# class loginTests(TestCase):
+class loginTests(TestCase):
 
-#     def test_loginPage(self):
-#     # testing
-#     def test_invalidLoginUserDoesNotExist(self):
+    # done
+    def test_loginPage(self):
+        response = self.client.get('/login/')
+        self.assertEqual(response.status_code, 200)
 
-#     def test_validLogin(self):
+    # this might not be valid, could use selenium
+    def test_invalidLoginUserDoesNotExist(self):
+        newUser = User.objects.create_user('harry', 'harry@email.com', 'pa$$word')
+        user = authenticate(username = 'jaxson', password = 'pa$$word')
+        self.assertEqual(user, None)
 
-#     def test_incompleteLoginFormNotFilled(self):
+    # this might not be valid, could use selenium
+    def test_validLogin(self):
+        newUser = User.objects.create_user('harry', 'harry@email.com', 'pa$$word')
+        user = authenticate(username = 'harry', password = 'pa$$word')
+        self.assertNotEqual(user, None)
+        
+    # done
+    def test_incompleteLoginFormNotFilled(self):
+        incompleteForm = LoginForm(data={
+            'username': '',
+            'password': ''
+        })
+        self.assertFalse(incompleteForm.is_valid())
 
-#Luis
+
 # class signupTests(TestCase):
 #     #testing
 #     def test_signupPage(self):
@@ -109,3 +129,4 @@ class requestNewTa(TestCase):
             'school': 'test school'
         })
         self.assertTrue(form.is_valid())
+
