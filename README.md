@@ -20,7 +20,7 @@ Project Name: RateMyTA
 2. Within the folder, create a new Python virtual environment using the command line
 
 3. Once the virtual environment has been created and activated, use **'pip install'** to install the following packages:
-  **'Django'**, **'pymongo'**, **'certifi'**, **'fuzzywuzzy'**, **'levenshtein'**
+  **'Django'**, **'pymongo'**, **'pymongo[srv]', ****'certifi'**, **'fuzzywuzzy'**, **'levenshtein'**
  
 4. Once these packages are installed, git clone the repository into the folder
 
