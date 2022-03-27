@@ -1,0 +1,129 @@
+{
+  "id": "e1ea935e-8acb-4234-8711-f3375393ba01",
+  "version": "2.0",
+  "name": "RateMyTA Search Results Test Cases",
+  "url": "http://127.0.0.1:8000",
+  "tests": [{
+    "id": "2abc61e6-80d0-4b0b-845b-70280abb65a8",
+    "name": "test_viewNoResults",
+    "commands": [{
+      "id": "26b26b43-1556-4a75-8379-18782051db93",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8e9971b1-c91c-4a12-bbe9-5abac57b353d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1519x977",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "cc787dfc-865f-44f6-a271-2b37e023db24",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f09a4c0e-7f00-4b36-ae1f-8993404ce4b8",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "John Appleseed"
+    }, {
+      "id": "6c294ee2-3d7f-4667-bb6f-f931d8afa10b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "7043ff33-9129-4f91-bb44-3157a2883176",
+    "name": "test_viewValidResults",
+    "commands": [{
+      "id": "0448e7e8-4646-4c6b-a8f5-dc78f60b3616",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d9ec645e-36c8-410a-b783-6b588c0ae812",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1056",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8526a7eb-a20f-4c4c-b981-bb893adea5be",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f442f010-8a5b-4000-8428-27ef132f8e1f",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "William Black"
+    }, {
+      "id": "b7c3a5a7-75b6-4bd7-bacc-452e3650be81",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "ddcbdbd5-1976-4173-8de5-b481887ed7d9",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2abc61e6-80d0-4b0b-845b-70280abb65a8"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}

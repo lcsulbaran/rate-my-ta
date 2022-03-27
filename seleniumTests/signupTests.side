@@ -1,0 +1,187 @@
+{
+  "id": "5d47d8cc-e644-4590-bc75-dc774aacb1e5",
+  "version": "2.0",
+  "name": "SENG 401",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "f59687a5-8c93-4a34-b6eb-a006e3122494",
+    "name": "InvalidEmailFormatError",
+    "commands": [{
+      "id": "dd4b7ad4-07cb-496a-9ef9-c2547e0cde48",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1e208d81-cc82-4411-85c4-8e93eea5035d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1381x885",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "24d735d3-37fe-4b2a-9d98-ba67b57c69b3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Signup",
+      "targets": [
+        ["linkText=Signup", "linkText"],
+        ["css=.nav-link:nth-child(3)", "css:finder"],
+        ["xpath=//a[contains(text(),'Signup')]", "xpath:link"],
+        ["xpath=//div[@id='navbarNavAltMarkup']/div/a[3]", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, 'signup')]", "xpath:href"],
+        ["xpath=//a[3]", "xpath:position"],
+        ["xpath=//a[contains(.,'Signup')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1b2a9bc-319f-4ade-8315-5f52f805fde4",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=name", "name"],
+        ["css=.form-floating:nth-child(4) > #floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78d4e98d-502f-4b86-9191-fd7cda0ebc72",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=name", "name"],
+        ["css=.form-floating:nth-child(4) > #floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Testing"
+    }, {
+      "id": "3b1f539a-9fc7-4d0a-9df3-a1240dc609e6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.text-center",
+      "targets": [
+        ["css=.text-center", "css:finder"],
+        ["xpath=//body/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50ea9993-4b56-4fa2-95ad-c9aad7cc31c2",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.form-floating:nth-child(5) > #floatingInput", "css:finder"],
+        ["xpath=(//input[@id='floatingInput'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d69008d8-396b-47e5-9307-4d4d7a082115",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.form-floating:nth-child(5) > #floatingInput", "css:finder"],
+        ["xpath=(//input[@id='floatingInput'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "testingmail.com"
+    }, {
+      "id": "582b4775-9c69-4245-b7c4-d6646af88acd",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingPassword",
+      "targets": [
+        ["id=floatingPassword", "id"],
+        ["name=password", "name"],
+        ["css=#floatingPassword", "css:finder"],
+        ["xpath=//input[@id='floatingPassword']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "23cfdc88-a30e-4a28-9664-e6c99594eaa5",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingPassword",
+      "targets": [
+        ["id=floatingPassword", "id"],
+        ["name=password", "name"],
+        ["css=#floatingPassword", "css:finder"],
+        ["xpath=//input[@id='floatingPassword']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "tesgin"
+    }, {
+      "id": "11958ed9-220f-431b-bae1-3f47822e23b2",
+      "comment": "",
+      "command": "click",
+      "target": "name=submit",
+      "targets": [
+        ["name=submit", "name"],
+        ["css=.w-100", "css:finder"],
+        ["xpath=//button[@name='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7181ca2e-594e-458b-bc04-d030033c16e9",
+      "comment": "",
+      "command": "click",
+      "target": "name=submit",
+      "targets": [
+        ["name=submit", "name"],
+        ["css=.w-100", "css:finder"],
+        ["xpath=//button[@name='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6f17648-bb18-4a79-afec-50577823aae3",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.form-floating:nth-child(5) > #floatingInput", "css:finder"],
+        ["xpath=(//input[@id='floatingInput'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "testing@mail.com"
+    }, {
+      "id": "2d54892f-3742-4443-b9f6-58ce094cef74",
+      "comment": "",
+      "command": "click",
+      "target": "name=submit",
+      "targets": [
+        ["name=submit", "name"],
+        ["css=.w-100", "css:finder"],
+        ["xpath=//button[@name='submit']", "xpath:attributes"],
+        ["xpath=//div[4]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Sign Up')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "39943977-9b65-43aa-bd5b-22f794f3db93",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["f59687a5-8c93-4a34-b6eb-a006e3122494"]
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
