@@ -36,15 +36,29 @@ class loginTests(TestCase):
         self.assertFalse(incompleteForm.is_valid())
 
 
-# class signupTests(TestCase):
+class signupTests(TestCase):
 #     #testing
-#     def test_signupPage(self):
+     def test_signupPage(self):
+        response = self.client.get('/signup/')
+        self.assertEqual(response.status_code, 200)
 
-#     def test_validSignup(self):
+     def test_validSignup(self):
+        response = self.client.post(reverse('signup'), {'name': 'testuser', 'email': 'test@email.com', 'password': 'pass123'}, format='text/html')
+        self.assertEqual(response.status_code, 302)
 
-#     def test_invalidSignupUserExists(self):
+     def test_invalidSignupUserExists(self):
+        User.objects.create_user(username = 'testuser', email = 'test@email.com', password = 'hello123')
+        response = self.client.post(reverse('signup'), {'name': 'testuser', 'email': 'test@email.com', 'password': 'pass123'},format='text/html')
+        self.client.get('/signup/', follow = True)
 
-#     def test_invalidSignupIncompleteForm(self):
+     def test_invalidSignupIncompleteForm(self):
+        form = SignupForm(data={
+            'name': '',
+            'email': '',
+            'password': ''
+         })
+
+        self.assertFalse(form.is_valid())
 
 #     def test_invalidSignupEmailFormatError(self):  
 
