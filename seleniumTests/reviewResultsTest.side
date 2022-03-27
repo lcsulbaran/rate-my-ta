@@ -1,0 +1,232 @@
+{
+  "id": "91a516ec-a831-4c83-87cd-3812bfdd5222",
+  "version": "2.0",
+  "name": "SENG401 Project",
+  "url": "http://127.0.0.1:8000/",
+  "tests": [{
+    "id": "1ff960c3-023b-485a-8e2f-cd5ba558ae51",
+    "name": "test_viewNoReviews",
+    "commands": [{
+      "id": "6578df79-8b0b-47b5-8dcf-58235ac524d4",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fdaaca4f-614c-4d7c-bb28-b96d39b677d4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x814",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2ab394c5-2a84-4a0e-8728-6e6c27cb5c0d",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b75ade5e-2999-4d0d-a22f-49e29301af64",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "Bardia Abhari"
+    }, {
+      "id": "243c2b91-ab33-4e2a-9c9e-c51fd6d63195",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ec1be8c4-8c0c-4d14-98b7-a69bb4b06cd1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.w-25",
+      "targets": [
+        ["css=.w-25", "css:finder"],
+        ["xpath=(//button[@name='submitButton'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'View')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "c4e4281e-9b47-49c6-be07-721ea62352e5",
+    "name": "test_viewOneReview",
+    "commands": [{
+      "id": "6764c6e0-39ca-4c26-a7a3-3430f507bfa7",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "80608bfd-827b-40a5-a9bf-6956e41b7c7a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x814",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "60d11140-74f7-40dd-b468-206072f8f647",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e296e6b0-4a6b-495b-9726-6121a9f793c1",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "John Smith"
+    }, {
+      "id": "018a1ce8-41c8-48c3-bab5-d92b714def38",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe0682b2-04f1-4609-bd52-c8f018f06bfc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.w-25",
+      "targets": [
+        ["css=.w-25", "css:finder"],
+        ["xpath=(//button[@name='submitButton'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'View')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "a7dd4064-1215-43bb-8396-57e5948904a4",
+    "name": "test_viewMultipleReviews",
+    "commands": [{
+      "id": "4074f273-ca26-44e9-9034-19fcb42b58e5",
+      "comment": "",
+      "command": "open",
+      "target": "http://127.0.0.1:8000/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9eab60a9-3eb8-4219-81c2-d32e364e5b77",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1200x814",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "51d3607a-3f50-4cb7-8321-600fec32f37b",
+      "comment": "",
+      "command": "click",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c2ecc258-ca65-4fea-b6b1-9850c7cfa1b3",
+      "comment": "",
+      "command": "type",
+      "target": "id=floatingInput",
+      "targets": [
+        ["id=floatingInput", "id"],
+        ["name=searchQuery", "name"],
+        ["css=#floatingInput", "css:finder"],
+        ["xpath=//input[@id='floatingInput']", "xpath:attributes"],
+        ["xpath=//div/input", "xpath:position"]
+      ],
+      "value": "William Black"
+    }, {
+      "id": "62a34a6b-c2e4-440b-97b6-f5ca288d99c0",
+      "comment": "",
+      "command": "click",
+      "target": "css=form",
+      "targets": [
+        ["css=form", "css:finder"],
+        ["xpath=//form[@action='']", "xpath:attributes"],
+        ["xpath=//form", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed70f650-9db3-4672-ae02-f09cee15010a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn",
+      "targets": [
+        ["css=.btn", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//form/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Search')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b83c66ec-f20b-46fc-aff9-9bff1ca0f709",
+      "comment": "",
+      "command": "click",
+      "target": "css=.w-25",
+      "targets": [
+        ["css=.w-25", "css:finder"],
+        ["xpath=(//button[@name='submitButton'])[2]", "xpath:attributes"],
+        ["xpath=//div[2]/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'View')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "a1e9ef39-d366-4507-880b-c621a994234a",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:8000/"],
+  "plugins": []
+}
