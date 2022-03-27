@@ -28,4 +28,6 @@ Project Name: RateMyTA
 
 To run the program use the command **'py manage.py runserver'** and open http://127.0.0.1:8000/ on your browser
 
-To run the program tests use the command **'py manage.py test'** and the tests will execute within the terminal
+To run the program unit tests use the command **'py manage.py test'** and the tests will execute within the terminal
+
+To run the Selenium tests, use the Selenium add-on/extension on Chrome or Firefox to open and run the test cases in each .side file
